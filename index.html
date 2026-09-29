@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>КГБПОУ "Красноярский техникум социальных технологий"</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f7fa;
+        color: #333;
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 20px;
+        line-height: 1.5;
+        overflow-x: hidden;
+        position: relative;
+      }
+      h1 {
+        color: #d32f2f;
+        text-align: center;
+      }
+      .banner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #fff;
+        border: 5px solid #d32f2f;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .banner-text {
+        flex: 1;
+        min-width: 250px;
+        text-align: center;
+      }
+      .banner img {
+        width: 120px;
+        height: auto;
+        display: block;
+      }
+      a {
+        display: inline-block;
+        margin: 10px 0;
+        padding: 10px 20px;
+        background: #d32f2f;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+      }
+      a:hover {
+        background: #b71c1c;
+      }
+      p {
+        margin-bottom: 15px;
+      }
+      .note {
+        font-size: 0.9em;
+        color: #666;
+        margin-top: 25px;
+        text-align: center;
+      }
+      .quiz-block {
+        background: #f1f1f1;
+        border-left: 5px solid #b71c1c;
+        padding: 20px;
+        margin-top: 20px;
+      }
+      .question {
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+      .options label {
+        display: block;
+        margin-bottom: 8px;
+        cursor: pointer;
+      }
+      .result {
+        margin-top: 15px;
+        font-weight: bold;
+      }
+      .correct { color: #2e7d32; }
+      .wrong { color: #c62828; }
+
+     #flying-minion {
+        position: fixed;
+        width: 80px;
+        z-index: 10;
+        pointer-events: none;
+        will-change: left, top;
+    }
+
+    </style>
+  </head>
+  <body>
+    <h1>Ты попался на непроверенную ссылку</h1>
+
+    <div class="banner">
+      <div class="banner-text">
+        <p><strong>Это фейковое объявление от техникума.</strong></p>
+        <p>Ссылка ведет не туда, куда обещает.</p>
+      </div>
+      <img src="minion.png" style="max-width: 120px;">
+    </div>
+
+    <p>В реальной жизни такие ссылки могут украсть твои данные, пароли, деньги. Это и есть <strong>фишинг</strong> (от англ. fishing - т.е. "рыбалка"): злоумышленники "ловят" пользователей, маскируя опасные сайты под настоящие.</p>
+    <p><b>Как понять, что ссылка подозрительная:</b></p>
+    <ul>
+      <li>Адрес выглядит странно: лишние символы, опечатки в названии.</li>
+      <li>Нет HTTPS (нет замочка в браузере) или сертификат вызывает сомнения.</li>
+      <li>Текст давит на эмоции: "Срочно!", "Только сегодня!", "Вы выиграли!".</li>
+      <li>Просят ввести личные данные без понятной причины.</li>
+    </ul>
+    <p>Если ты знал, что ссылка проверена - ты молодец. А если нет, то теперь проверяй внимательнее.</p>
+
+    <hr>
+
+    <div class="quiz-block">
+      <p class="question">Тебе в мессенджер пишет "куратор" с незнакомого номера: "Срочно скинь фото студенческого билета - в техникуме проверка. Вот ссылка на форму загрузки: stud-check-2026.online". Что ты сделаешь?</p>
+      <div class="options">
+        <label><input type="radio" name="q3" value="wrong"> Быстро скину фото билета.</label>
+        <label><input type="radio" name="q3" value="wrong"> Сначала загружу фото по ссылке, а потом напишу куратору в обычном чате - уточню, всё ли ок.</label>
+        <label><input type="radio" name="q3" value="correct"> Не буду переходить по ссылке и ничего не буду отправлять. Свяжусь с куратором по известному номеру и уточню, была ли такая рассылка.</label>
+      </div>
+      <button onclick="checkAnswer3()" style="padding: 8px 16px; background: #b71c1c; color: white; border: none; border-radius: 4px; cursor: pointer;">Проверить ответ</button>
+      <p id="result3" class="result"></p>
+    </div>
+
+    <br>
+    <hr>
+
+    <div class="note">
+      Это демонстрационная страница для конкурса на тему кибербезопасности от КГБПОУ "Красноярский техникум социальных технологий" группы ИСиП 25.1. Миньоны передают Елене Александровне привет!
+    </div>
+
+    <img id="flying-minion" src="flying-minion.png">
+
+    <script>
+      function checkAnswer3() {
+        const selected = document.querySelector('input[name="q3"]:checked');
+        const result = document.getElementById('result3');
+        if (!selected) {
+          result.textContent = 'Выбери вариант ответа.';
+          result.className = 'result';
+          return;
+        }
+        if (selected.value === 'correct') {
+          result.textContent = 'Верно! Мошенники часто маскируются под кураторов и просят фото документов или данные по подозрительным ссылкам. Всегда перепроверяй такие просьбы через проверенные каналы связи.';
+          result.className = 'result correct';
+        } else {
+          result.textContent = 'Неверно! Не переходи по сомнительным ссылкам и не отправляй фото документов в ответ на неожиданные просьбы. Сначала убедись, что запрос действительно от куратора.';
+          result.className = 'result wrong';
+        }
+      }
+
+      const minion = document.getElementById('flying-minion');
+      if (minion) {
+    
+        let vx = 5;
+        let vy = 7;
+
+        minion.style.position = 'fixed';
+
+        let x = 0;
+        let y = 0;
+
+        function animate() {
+          x += vx;
+          y += vy;
+
+          const w = 80;
+          const h = 80;
+          const maxX = window.innerWidth - w;
+          const maxY = window.innerHeight - h;
+
+          if (x <= 0) { x = 0; vx = -vx; }
+          if (x >= maxX) { x = maxX; vx = -vx; }
+          if (y <= 0) { y = 0; vy = -vy; }
+          if (y >= maxY) { y = maxY; vy = -vy; }
+
+          minion.style.left = x + 'px';
+          minion.style.top = y + 'px';
+
+          requestAnimationFrame(animate);
+        }
+
+        animate();
+      }
+    </script>
+
+  </body>
+</html>
